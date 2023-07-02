@@ -9,12 +9,12 @@ var passport = require('passport');
 const {
   pageNotFound,
   serverErrorHandler,
-} = require('../app/middlewares/response');
+} = require('./app/middlewares/response');
 const port = process.env.PORT || 3000;
 const app = express();
 app.use(morgan('dev'));
 require('dotenv').config({ path: path.join(__dirname, 'config', '.env') });
-require('../app/config/database');
+require('./app/config/database');
 
 app.use(cors());
 app.use(cookieParser());
@@ -23,9 +23,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use(passport.initialize());
-require('../app/middlewares/passport')(passport);
+require('./app/middlewares/passport')(passport);
 
-const routes = require('./routes/combineAllRoutes');
+const routes = require('./app/routes/combineAllRoutes');
 
 app.use(routes);
 
