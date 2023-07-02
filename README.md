@@ -1,3 +1,3 @@
 To Run the server command.
 
-#npm run server
+npm run server
